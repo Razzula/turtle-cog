@@ -1,6 +1,8 @@
+# server socket to run on RPi
+
 import socket
 
-HOST = "" #socket.gethostname()
+HOST = "" ##socket.gethostname()
 PORT = 65432
 
 print(f"Running on {HOST}:{PORT}\n")
