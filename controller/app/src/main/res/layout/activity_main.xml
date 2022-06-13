@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/turtle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/turtle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/enable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:checked="false"
+        android:showText="false"
+        android:splitTrack="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnUp"
+        android:layout_width="129dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="224dp"
+        android:enabled="false"
+        android:onClick="buttonU"
+        android:text="FORWARD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnLeft"
+        android:layout_width="129dp"
+        android:layout_height="134dp"
+        android:layout_marginEnd="6dp"
+        android:enabled="false"
+        android:onClick="buttonL"
+        android:text="LEFT"
+        app:layout_constraintEnd_toStartOf="@+id/btnDown"
+        app:layout_constraintTop_toTopOf="@+id/btnDown" />
+
+    <Button
+        android:id="@+id/btnDown"
+        android:layout_width="129dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="-2dp"
+        android:enabled="false"
+        android:onClick="buttonD"
+        android:text="BACKWARD"
+        app:layout_constraintEnd_toEndOf="@+id/btnUp"
+        app:layout_constraintStart_toStartOf="@+id/btnUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnUp" />
+
+    <Button
+        android:id="@+id/btnRight"
+        android:layout_width="129dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="6dp"
+        android:enabled="false"
+        android:onClick="buttonR"
+        android:text="RIGHT"
+        app:layout_constraintStart_toEndOf="@+id/btnDown"
+        app:layout_constraintTop_toTopOf="@+id/btnDown" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

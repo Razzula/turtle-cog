@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Turtlecog Controller</string>
+    <string name="turtle">"   _____      ____
+ /          \\  |    o  |
+|             |/ ___\\ |
+|_________/
+|_|_| |_|_|"</string>
+</resources>
