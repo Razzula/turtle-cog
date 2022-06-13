@@ -19,17 +19,23 @@ class Motor:
         GPIO.output(self.pins['f'],GPIO.LOW)
         GPIO.output(self.pins['r'],GPIO.LOW)
 
-    def forward(self, speed): # speed - Duty Cycle Percentage from 0 (stop) to 100
+        self.speed = 0
+
+    def forward(self, speed=None): # speed - Duty Cycle Percentage from 0 (stop) to 100
         print(str(self.id) + ": Forward")
 
-        self.PWM.ChangeDutyCycle(speed)
+        if (speed != None):
+            self.speed = speed
+        self.PWM.ChangeDutyCycle(self.speed)
         GPIO.output(self.pins['f'],GPIO.HIGH)
         GPIO.output(self.pins['r'],GPIO.LOW)
 
-    def reverse(self, speed):
+    def reverse(self, speed=None):
         print(str(self.id) + ": Reverse")
 
-        self.PWM.ChangeDutyCycle(speed)
+        if (speed != None):
+            self.speed = speed
+        self.PWM.ChangeDutyCycle(self.speed)
         GPIO.output(self.pins['f'],GPIO.LOW)
         GPIO.output(self.pins['r'],GPIO.HIGH)
 
@@ -43,7 +49,8 @@ class Motor:
     def setSpeed(self, speed):
 
         if (speed >= 0 & speed <= 100):
-            self.PWM.ChangeDutyCycle(speed)
+            # self.PWM.ChangeDutyCycle(speed)
+            self.speed = speed
 
 # m1 = Motor(1, 11,13,15)
 # m2 = Motor(2, 22,16,18)

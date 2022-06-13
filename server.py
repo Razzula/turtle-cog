@@ -36,22 +36,29 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s: #IPv4, TCP
                     print(f"{addr} disconnected")
                     break
 
-                print(data.decode('utf-8'))
+                data = data.decode('utf-8')
+                print(data)
+
                 if (data == 'w'):
-                    m1.forward(50)
-                    m2.forward(50)
+                    m1.forward()
+                    m2.forward()
                 elif (data == 'a'):
-                    m1.reverse(50)
-                    m2.forward(50)
+                    m1.reverse()
+                    m2.forward()
                 elif (data == 's'):
-                    m1.reverse(50)
-                    m2.reverse(50)
+                    m1.reverse()
+                    m2.reverse()
                 elif (data == 'd'):
-                    m1.forward(50)
-                    m2.reverse(50)
+                    m1.forward()
+                    m2.reverse()
             
-                sleep(0.5)
-                m1.stop()
-                m2.stop()
+                elif (data[0] == ':'):
+                    speed = int(data[1:])
+                    m1.setSpeed(speed)
+                    m2.setSpeed(speed)
+
+                else:
+                    m1.stop()
+                    m2.stop()
                 
             conn.close()

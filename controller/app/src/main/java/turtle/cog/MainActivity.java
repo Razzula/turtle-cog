@@ -6,10 +6,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.CompoundButton;
+import android.widget.Button;
+import android.widget.SeekBar;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.io.IOException;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SeekBar speedBar = (SeekBar) findViewById(R.id.barSpeed);
+        speedBar.setEnabled(false);
 
         toggle = (Switch) findViewById(R.id.enable);
         err = false;
@@ -46,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
                             findViewById(R.id.btnLeft).setEnabled(true);
                             findViewById(R.id.btnDown).setEnabled(true);
                             findViewById(R.id.btnRight).setEnabled(true);
+                            findViewById(R.id.barSpeed).setEnabled(true);
+
+                            speedBar.setProgress(50);
+                            send(":50");
                         } else {
                             closeConnection();
 
@@ -59,6 +69,72 @@ public class MainActivity extends AppCompatActivity {
         }
 
         turtle = (TextView) findViewById(R.id.turtle);
+
+        findViewById(R.id.btnUp).setOnTouchListener( new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch ( motionEvent.getAction() ) {
+                    case MotionEvent.ACTION_DOWN: send("w"); break;
+                    case MotionEvent.ACTION_UP: send(" "); break;
+                }
+                return false;
+            }
+        } );
+
+        findViewById(R.id.btnLeft).setOnTouchListener( new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch ( motionEvent.getAction() ) {
+                    case MotionEvent.ACTION_DOWN: send("a"); break;
+                    case MotionEvent.ACTION_UP: send(" "); break;
+                }
+                return false;
+            }
+        } );
+
+        findViewById(R.id.btnDown).setOnTouchListener( new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch ( motionEvent.getAction() ) {
+                    case MotionEvent.ACTION_DOWN: send("s"); break;
+                    case MotionEvent.ACTION_UP: send(" "); break;
+                }
+                return false;
+            }
+        } );
+
+        findViewById(R.id.btnRight).setOnTouchListener( new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch ( motionEvent.getAction() ) {
+                    case MotionEvent.ACTION_DOWN: send("d"); break;
+                    case MotionEvent.ACTION_UP: send(" "); break;
+                }
+                return false;
+            }
+        } );
+
+        SeekBar speed = (SeekBar) findViewById(R.id.barSpeed);
+        speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (!fromUser) {
+                    return;
+                }
+
+                try {
+                    send(":" + progress);
+                }
+                catch (NullPointerException e) {
+                    // Log.e("", "");
+                }
+            }
+        } );
     }
 
     public void setupConnection() {
@@ -122,19 +198,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnLeft).setEnabled(false);
         findViewById(R.id.btnDown).setEnabled(false);
         findViewById(R.id.btnRight).setEnabled(false);
-    }
-
-    public void buttonU(View view) {
-        send("w");
-    }
-    public void buttonL(View view) {
-        send("a");
-    }
-    public void buttonD(View view) {
-        send("s");
-    }
-    public void buttonR(View view) {
-        send("d");
+        findViewById(R.id.barSpeed).setEnabled(false);
     }
 
     private void send(String message) {
