@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.CompoundButton;
-import android.widget.Button;
 import android.widget.SeekBar;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Switch toggle;
     TextView turtle;
     boolean err;
+    boolean dead = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +135,36 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } );
+
+        Thread animation = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while(true) {
+                        sleep(5000);
+                        if (!dead) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    turtle.setText(getString(R.string.turtle_blink));
+                                }
+                            });
+                            sleep(500);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    turtle.setText(getString(R.string.turtle));
+                                }
+                            });
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        animation.start();
     }
 
     public void setupConnection() {
@@ -145,7 +175,14 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     socket = new Socket("turtlecog",65432);
                     socket.setSoTimeout(5000);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            turtle.setText(getString(R.string.turtle));
+                        }
+                    });
                     turtle.setTextColor(Color.GREEN);
+                    dead = false;
                 } catch (UnknownHostException e) {
                     Log.e("", "Unknown Host Error whilst connecting socket");
                 } catch (IOException e) {
@@ -156,9 +193,11 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             toggle.setChecked(false);
+                            turtle.setText(getString(R.string.turtle_dead));
                         }
                     });
                     turtle.setTextColor(Color.RED);
+                    dead = true;
                     return;
                 }
 

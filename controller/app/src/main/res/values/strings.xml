@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">Turtlecog Controller</string>
-    <string name="turtle">"   _____      ____
- /          \\  |    o  |
-|             |/ ___\\ |
-|_________/
-|_|_| |_|_|"</string>
+    <string name="turtle">"   ________    ____
+  /  \\__/  \\  |  o |
+ |\\__/  \\__/|/ ___\\|
+&lt; ___\\__/___ _/
+ |_|_|  |_|_|"</string>
+    <string name="turtle_dead">"   ________    ____
+  /  \\__/  \\  |  x |
+ |\\__/  \\__/|/ ___\\|
+&lt; ___\\__/___ _/
+ |_|_|  |_|_|"</string>
+    <string name="turtle_blink">"   ________    ____
+  /  \\__/  \\  |  _ |
+ |\\__/  \\__/|/ ___\\|
+&lt; ___\\__/___ _/
+ |_|_|  |_|_|"</string>
 </resources>
