@@ -1,6 +1,11 @@
 # server socket to run on RPi
 
 import socket
+from time import sleep
+from motorController import Motor
+
+m1 = Motor(1, 11,13,15)
+m2 = Motor(2, 22,16,18)
 
 HOST = "" ##socket.gethostname()
 PORT = 65432
@@ -30,6 +35,23 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s: #IPv4, TCP
                 if not data: #b'' signals termination
                     print(f"{addr} disconnected")
                     break
+
                 print(data.decode('utf-8'))
+                if (data == 'w'):
+                    m1.forward(50)
+                    m2.forward(50)
+                elif (data == 'a'):
+                    m1.reverse(50)
+                    m2.forward(50)
+                elif (data == 's'):
+                    m1.reverse(50)
+                    m2.reverse(50)
+                elif (data == 'd'):
+                    m1.forward(50)
+                    m2.reverse(50)
+            
+                sleep(0.5)
+                m1.stop()
+                m2.stop()
                 
             conn.close()
