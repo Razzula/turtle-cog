@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                                             turtleLegs.setText(getString(resID));
                                         }
                                     });
-                                    if (walking[i].equals("turtle")) {
+                                    if (walking[i].equals("turtle_stand")) {
                                         if (!moving) {
                                             break;
                                         }
