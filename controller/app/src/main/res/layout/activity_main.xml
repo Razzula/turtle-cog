@@ -17,6 +17,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/turtlelegs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="@string/turtle_stand"
+        app:layout_constraintEnd_toEndOf="@+id/turtle"
+        app:layout_constraintStart_toStartOf="@+id/turtle"
+        app:layout_constraintTop_toBottomOf="@+id/turtle" />
+
+    <TextView
+        android:id="@+id/textSearching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:fontFamily="monospace"
+        android:text="\?"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/turtle"
+        app:layout_constraintEnd_toEndOf="@+id/turtle" />
+
     <Switch
         android:id="@+id/enable"
         android:layout_width="wrap_content"
@@ -76,8 +97,8 @@
         android:layout_width="328dp"
         android:layout_height="34dp"
         android:layout_marginBottom="36dp"
-        android:max="100"
-        android:progress="50"
+        android:max="75"
+        android:progress="25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

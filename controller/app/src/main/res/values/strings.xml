@@ -3,16 +3,17 @@
     <string name="turtle">"   ________    ____
   /  \\__/  \\  |  o |
  |\\__/  \\__/|/ ___\\|
-&lt; ___\\__/___ _/
- |_|_|  |_|_|"</string>
+&lt; ___\\__/___ _/"</string>
     <string name="turtle_dead">"   ________    ____
   /  \\__/  \\  |  x |
- |\\__/  \\__/|/ ___\\|
-&lt; ___\\__/___ _/
- |_|_|  |_|_|"</string>
+ |\\__/  \\__/|/ ____|
+&lt; ___\\__/___ _/"</string>
     <string name="turtle_blink">"   ________    ____
   /  \\__/  \\  |  _ |
  |\\__/  \\__/|/ ___\\|
-&lt; ___\\__/___ _/
- |_|_|  |_|_|"</string>
+&lt; ___\\__/___ _/"</string>
+
+    <string name="turtle_stand">" |_|_|  |_|_|       "</string>
+    <string name="turtle_step">" |_|-/  |_|-/       "</string>
+    <string name="turtle_step2">" /-/_|  /-/_|       "</string>
 </resources>
